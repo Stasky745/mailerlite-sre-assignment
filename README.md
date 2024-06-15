@@ -4,6 +4,10 @@ This is an assignment done for MailerLite's interview process.
 ## Description
 This operator manages custom resources for configuring email sending and sending of emails via a transactional email provider like MailerSend. The operator works cross namespace, and sends from multiple providers such as MailerSend and Mailgun.
 
+## Assignment Deliverables
+### Container and Deployment manifests for the operator
+The code for these is available in the [**Dockerfile**](./Dockerfile) and [**manifests/deployment.yaml**](./manifests/deployment.yaml).
+
 ## Getting Started
 
 ### Prerequisites
@@ -22,6 +26,18 @@ Clone this repository and install all the dependencies:
 make
 make manifests
 make install
+```
+
+We can then create the image:
+
+```bash
+# To push to remote registry
+# $ make docker-build docker-push IMG=example/my-operator:latest
+# But I install locally 
+$ make docker-build IMG=mailerlite.io/mail-operator:latest
+
+# You can then deploy using the make command, or use the deployment manifest in the [`manifests`](./manifests/) folder.
+# $ make deploy IMG=example/my-operator:latest
 ```
 
 #### Create resources necessary
@@ -130,6 +146,8 @@ make undeploy
 The API declarations are all in [`api/v1`](./api/v1/), and the code for the controllers are all in [`internal/controller`](./internal/controller/).
 
 The extra code used to keep the structure tidy can be found in the [`pkg`](./pkg/) folder.
+
+A deployment manifest can be found in the [`manifests`](./manifests/) folder.
 
 ## Project Distribution
 
