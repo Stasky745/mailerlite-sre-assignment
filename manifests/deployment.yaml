@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailerlite-operator
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mailerlite-operator
+  template:
+    metadata:
+      labels:
+        app: mailerlite-operator
+    spec:
+      serviceAccountName: email-operator
+      containers:
+      - name: mailerlite-operator
+        image: mailerlite.io/mail-operator
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "0.8"
+          limits:
+            memory: "256Mi"
+            cpu: "0.8"
